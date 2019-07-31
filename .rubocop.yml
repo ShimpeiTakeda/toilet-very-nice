@@ -1,0 +1,190 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'config/unicorn/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+
+Rails:
+  Enabled: true
+
+# ファイルパスの指定をRails.root.join('path', 'to')のように書かなくても良い
+Rails/FilePath:
+  Enabled: false
+
+# inverse_ofをつけなくてもよい
+Rails/InverseOf:
+  Enabled: false
+
+Rails/LinkToBlank:
+  Enabled: false
+
+# html_safeを使っても良い
+Rails/OutputSafety:
+  Enabled: false
+
+# update_all, touchのようなvalidationをskipするメソッドを使っても良い
+Rails/SkipsModelValidations:
+  Enabled: false
+
+# Helperメソッドであってもインスタンス変数を参照しても良い
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - staging
+
+# allow_any_instance_ofを使っても良い
+RSpec/AnyInstance:
+  Enabled: false
+
+# contestの引数にifとかwhenを付けなくても良い
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/system/**/*'
+
+RSpec/DescribedClass:
+  Enabled: false
+
+# exampleの長さを制限しない
+RSpec/ExampleLength:
+  Enabled: false
+
+# let!を使っても良い
+RSpec/LetSetup:
+  Enabled: false
+
+# 1つのexampleに複数のexpectを書いても良い
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/RepeatedExample:
+  Exclude:
+    - 'spec/policies/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+# class/moduleのネストをmodule A::Bのように1行で書いても良い
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# !!でオブジェクトをbooleanに変換しても良い
+Style/DoubleNegation:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+# 日本語でコメントを書いても良い
+Style/AsciiComments:
+  Enabled: false
+
+# if, whileを後置で書かなくても良い
+Style/WhileUntilModifier:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+
+# シングルクオート、ダブルクオートはどちらを使ってもよい
+Style/StringLiterals:
+  Enabled: false
+
+# $1, $2, ...を使っても良い
+Style/PerlBackrefs:
+  Enabled: false
+
+# Array等の定数にfreezeをつけなくても良い
+Style/MutableConstant:
+  Enabled: false
+
+# frozen_string_literal: trueを明記しなくて良い
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# zero?, negative?, positive?を使わなくても良い
+Style/NumericPredicate:
+  Enabled: false
+
+# 複数行のラムダを->で書いても良い
+Style/Lambda:
+  Enabled: false
+
+# StandardErrorの場合はrescueのエラークラスの指定を省略
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+
+Metrics/LineLength:
+  Max: 120
+
+# 行数を制限しない
+Metrics/ModuleLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+
+# 複雑性を制限しない
+Metrics/AbcSize:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+# ブロックのネスト数を制限しない
+Metrics/BlockNesting:
+  Enabled: false
+
+# メソッドの仮引数の数を制限しない
+Metrics/ParameterLists:
+  Enabled: false
+
+# get_xxx, set_xxxという名前のメソッドを定義しても良い
+Naming/AccessorMethodName:
+  Enabled: false
+
+# is_xxx、has_xxxという名前のメソッドを定義しても良い
+Naming/PredicateName:
+  Enabled: false
+
+# 1文字の変数名を使っても良い
+# 変数名の最後が数字でも良い
+Naming/UncommunicativeMethodParamName:
+  MinNameLength: 1
+  AllowNamesEndingInNumbers: false
+
+# ヒアドキュメントのデリミタにEOSのような説明的でないものを使っても良い
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+
+# gemの読み込み順をアルファベット順にしない
+# elasticsearch関連のgemが読み込み順を変えるとエラーになったため
+Bundler/OrderedGems:
+  Enabled: false
+
+# URI.encodeを使っても良い
+# 非推奨だが、’CGI.escape’ではでは'/'もエスケープされてしまうため
+Lint/UriEscapeUnescape:
+  Enabled: false

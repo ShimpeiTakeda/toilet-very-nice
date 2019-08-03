@@ -46,7 +46,7 @@ jobs:
 
       # Run haml-lint
       - type: shell
-        command: bundle exec haml-lint app/**/*.haml admin/app/**/*.haml
+        command: bundle exec haml-lint app/**/*.haml
         when: always
 
       # Run scss-lint

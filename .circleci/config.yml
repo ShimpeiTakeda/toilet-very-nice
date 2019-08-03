@@ -44,18 +44,15 @@ jobs:
       - run:
           name: Rspec
           command: bundle exec rspec
-
-      # Run haml-lint
-      - type: shell
-        command: bundle exec haml-lint app/**/*.haml
-        when: always
-
-      # Run scss-lint
-      - type: shell
-        command: bundle exec scss-lint
-        when: always
-
-      # Run rubocop
-      - type: shell
-        command: bundle exec rubocop
-        when: always
+      # # Run haml-lint
+      # - type: shell
+      #   command: bundle exec haml-lint app/**/*.haml
+      #   when: always
+      # # Run scss-lint
+      # - type: shell
+      #   command: bundle exec scss-lint
+      #   when: always
+      # # Run rubocop
+      # - type: shell
+      #   command: bundle exec rubocop
+      #   when: always

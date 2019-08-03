@@ -10,7 +10,7 @@ jobs:
       - image: circleci/ruby:2.6.3-stretch-node-browsers-legacy
         environment:
           RAILS_ENV: test
-          POSTGRES_HOST: 127.0.0.1
+          DB_HOST: 127.0.0.1
           DB_USERNAME: "root"
           DB_PASSWORD: ""
       - image: circleci/mysql:8.0.16

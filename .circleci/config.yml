@@ -51,6 +51,7 @@ jobs:
       - run:
           name: Database Setup
           command: |
+            mv config/database-ci.yml config/database.yml
             bundle exec rake db:create
             bundle exec rake db:schema:load
 

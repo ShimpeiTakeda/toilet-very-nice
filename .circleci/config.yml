@@ -10,7 +10,7 @@ jobs:
       - image: circleci/ruby:2.6.3-stretch-node-browsers-legacy
         environment:
           RAILS_ENV: test
-          DB_HOST: 127.0.0.1
+          DB_HOST: "127.0.0.1"
           DB_USERNAME: "root"
           DB_PASSWORD: ""
       - image: circleci/mysql:8.0.16
@@ -26,6 +26,13 @@ jobs:
 
     steps:
       - checkout
+
+      - run:
+          name: Install System Dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev
+            sudo apt-get install -y lsb-release mysql-client
 
       # Download and cache dependencies
       - restore_cache:

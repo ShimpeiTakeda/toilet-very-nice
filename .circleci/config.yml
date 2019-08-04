@@ -32,6 +32,8 @@ jobs:
           command: |
             gem install bundler -v 2.0.2
             bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bundle exec gem uninstall mysql2
+            bundle install
 
       - save_cache:
           paths:
@@ -41,7 +43,6 @@ jobs:
       - run:
           name: Database Setup
           command: |
-            sudo apt-get install libmariadb-dev
             bundle exec rake db:create
             bundle exec rake db:schema:load
 

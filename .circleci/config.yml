@@ -39,12 +39,6 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       - run:
-          name: Remove Bootsnap Cache
-          command: |
-            rm tmp/cache/bootsnap-load-path-cache
-            rm tmp/cache/bootsnap-compile-cache
-
-      - run:
           name: Database Setup
           command: |
             bundle exec rake db:create

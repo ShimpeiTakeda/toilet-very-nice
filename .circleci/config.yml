@@ -46,12 +46,12 @@ jobs:
           name: Database Setup
           command: |
             bundle exec rake db:create
-            bundle exec rake db:schema:load
-      # # Rspec
-      # - run:
-      #     name: Rspec
-      #     command: bundle exec rspec
-      # # Run rubocop
-      # - run:
-      #     name: rubocop
-      #     command: bundle exec rubocop
+            # bundle exec rake db:schema:load
+      # Rspec
+      - run:
+          name: Rspec
+          command: bundle exec rspec
+      # Run rubocop
+      - run:
+          name: rubocop
+          command: bundle exec rubocop

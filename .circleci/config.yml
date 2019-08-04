@@ -20,13 +20,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Install System Dependencies
-          command: |
-            sudo apt-get update
-            sudo apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev
-            sudo apt-get install -y lsb-release mysql-client
-
       # Download and cache dependencies
       - restore_cache:
           keys:

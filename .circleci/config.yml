@@ -13,7 +13,7 @@ jobs:
       - image: circleci/mysql:8.0.16
         environment:
           MYSQL_USER: root
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: ""
 
     working_directory: ~/repo
 
@@ -32,6 +32,16 @@ jobs:
           command: |
             gem install bundler -v 2.0.2
             bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - run:
+          name: remove mysql2 temporary
+          command: |
+            bundle exec gem uninstall mysql2
+
+      - run:
+          name: reinstall mysql2 temporary
+          command: |
+            bundle install --jobs=3 --retry=3 --path vendor/bundle
 
       - save_cache:
           paths:

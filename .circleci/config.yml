@@ -10,7 +10,7 @@ jobs:
         environment:
           RAILS_ENV: test
           TZ: Asia/Tokyo
-      - image: circleci/mysql:5.7
+      - image: circleci/mysql:8.0.16
         environment:
           MYSQL_USER: root
           MYSQL_ROOT_PASSWORD: ""

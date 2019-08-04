@@ -33,20 +33,16 @@ jobs:
             gem install bundler -v 2.0.2
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-      - run:
-          name: remove mysql2 temporary
-          command: |
-            bundle exec gem uninstall mysql2
-
-      - run:
-          name: reinstall mysql2 temporary
-          command: |
-            bundle install --jobs=3 --retry=3 --path vendor/bundle
-
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Remove Bootsnap Cache
+          command: |
+            rm tmp/cache/bootsnap-load-path-cache
+            rm tmp/cache/bootsnap-compile-cache
 
       - run:
           name: Database Setup

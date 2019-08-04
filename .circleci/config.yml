@@ -20,10 +20,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-        name: Wait for DB
-        command: dockerize -wait tcp://127.0.0.1:3306 -timeout 3m
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -42,9 +38,11 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      # Database setup
-      - run: bundle exec rails db:create
-      - run: bundle exec rails db:schema:load
+      - run:
+          name: Database Setup
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:structure:load
 
       # Rspec
       - run:

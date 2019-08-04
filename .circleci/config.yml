@@ -41,7 +41,7 @@ jobs:
       - run:
           name: Database Setup
           command: |
-            sudo apt-get install default-mysql-client
+            sudo apt-get install libmysqld-dev
             bundle exec rake db:create
             bundle exec rake db:schema:load
 

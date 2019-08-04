@@ -13,12 +13,16 @@ jobs:
           DB_HOST: 127.0.0.1
           DB_USERNAME: "root"
           DB_PASSWORD: ""
-      - image: circleci/mysql:8.0.16
+      - image: circleci/mysql:8.0.16-ram
 
     working_directory: ~/repo
 
     steps:
       - checkout
+
+      - run:
+        name: Wait for DB
+        command: dockerize -wait tcp://127.0.0.1:3306 -timeout 3m
 
       # Download and cache dependencies
       - restore_cache:
@@ -47,17 +51,7 @@ jobs:
           name: Rspec
           command: bundle exec rspec
 
-      # Run haml-lint
-      - type: shell
-        command: bundle exec haml-lint app/**/*.haml
-        when: always
-
-      # Run scss-lint
-      - type: shell
-        command: bundle exec scss-lint
-        when: always
-
       # Run rubocop
-      - type: shell
-        command: bundle exec rubocop
-        when: always
+      - run:
+          name: rubocop
+          command: bundle exec rubocop

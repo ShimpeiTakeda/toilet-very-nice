@@ -20,25 +20,22 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      # Restore bundle cache
+      - type: cache-restore
+        keys:
+          - gem-cache-{{ checksum "Gemfile.lock" }}
 
       - run:
           name: Bundle Install
           command: |
             gem install bundler -v 2.0.2
             bundle install --jobs=4 --retry=3 --path vendor/bundle
-            bundle exec gem uninstall mysql2
-            bundle install
 
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      # Store bundle cache
+      - type: cache-save
+        key: gem-cache-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
 
       - run:
           name: Database Setup

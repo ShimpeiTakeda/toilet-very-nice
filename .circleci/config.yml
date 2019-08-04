@@ -10,7 +10,7 @@ jobs:
         environment:
           RAILS_ENV: test
           TZ: Asia/Tokyo
-      - image: circleci/mysql:8.0.16
+      - image: circleci/mysql:5.7
         environment:
           MYSQL_USER: root
           MYSQL_ROOT_PASSWORD: ""
@@ -51,7 +51,6 @@ jobs:
       - run:
           name: Database Setup
           command: |
-            mv config/database-ci.yml config/database.yml
             bundle exec rake db:create
             bundle exec rake db:schema:load
 
